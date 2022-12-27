@@ -23,14 +23,17 @@ public class Frame extends JFrame
 
 		grid = new JPanel[n*n];
 		text = new JLabel[n*n];
-
+		
+		Color panel = new Color(205,193,180);
+		Color border = new Color(187,173,160);
+		
 		for(int k=0; k<n*n; k++) {
 			grid[k] = new JPanel();
 			grid[k].setLayout(new BorderLayout());
 			text[k] = new JLabel("",SwingConstants.CENTER);
-			grid[k].setBackground(Color.LIGHT_GRAY);
+			grid[k].setBackground(panel);
 			grid[k].add(text[k],BorderLayout.CENTER);
-			grid[k].setBorder(BorderFactory.createLineBorder(Color.gray, 3));
+			grid[k].setBorder(BorderFactory.createLineBorder(border, 3));
 			c.add(grid[k]);
 		}
 		genera();
