@@ -41,13 +41,13 @@ public class Main {
 		        	LEFT(f, matrix);
 		    		deleteOldText(f);
 		    		fromMatrixtoText(f, matrix);
-		    		//genera(f);
+		    		genera(f, matrix);
 		        }
 		        else if (keyCode == KeyEvent.VK_RIGHT) {
 		        	RIGHT(f, matrix);
 		    		deleteOldText(f);
 		    		fromMatrixtoText(f, matrix);
-		    		//genera(f);
+		    		genera(f, matrix);
 		        }
 			}
 		});
@@ -131,11 +131,41 @@ public class Main {
 	}
 	
 	public static boolean LEFT(Frame f, int[][] matrix) {
-		return false;
+		int c=0;
+		for(int times=0; times<3; times++) {//eseguo per 3 volte per assicurare che anche se un numero sia tutto in basso, dopo 3 spostamenti possa essere su
+			for(int y=0; y<f.n; y++) {
+				for(int x=0; x<(f.n)-1; x++) {
+					if(matrix[x][y] == 0 && matrix[x+1][y] != 0) {
+						matrix[x][y] = matrix[x+1][y];
+						matrix[x+1][y] = 0;
+						c++;
+					}
+				}
+			}
+		}
+		if(c<1)
+			return false;
+		else
+			return true;
 	}
 	
 	public static boolean RIGHT(Frame f, int[][] matrix) {
-		return false;
+		int c=0;
+		for(int times=0; times<3; times++) {//eseguo per 3 volte per assicurare che anche se un numero sia tutto in basso, dopo 3 spostamenti possa essere su
+			for(int y=0; y<f.n; y++) {
+				for(int x=(f.n)-1; x>0; x--) {
+					if(matrix[x][y] == 0 && matrix[x-1][y] != 0) {
+						matrix[x][y] = matrix[x-1][y];
+						matrix[x-1][y] = 0;
+						c++;
+					}
+				}
+			}
+		}
+		if(c<1)
+			return false;
+		else
+			return true;
 	}
 	
 	public static void genera(Frame f, int[][] matrix) {
