@@ -25,23 +25,42 @@ public class Main {
 				int keyCode = e.getKeyCode();
 		    	if (keyCode == KeyEvent.VK_UP) {
 		    		if(UP(f, matrix)) {
+		        		Sum_UP(f, matrix);
 		    			deleteOldText(f);
 			    		fromMatrixtoText(f, matrix);
 			    		genera(f, matrix);
 		    		}
+		        	else if(Sum_UP(f, matrix)) {
+		        		deleteOldText(f);
+			    		fromMatrixtoText(f, matrix);
+			    		genera(f, matrix);
+		        	}
 		        }
 		        else if (keyCode == KeyEvent.VK_DOWN) {
 		        	if(DOWN(f, matrix)) {
+		        		Sum_DOWN(f, matrix);
 		    			deleteOldText(f);
 			    		fromMatrixtoText(f, matrix);
 			    		genera(f, matrix);
 		    		}
+		        	else if(Sum_DOWN(f, matrix)) {
+		        		deleteOldText(f);
+			    		fromMatrixtoText(f, matrix);
+			    		genera(f, matrix);
+		        	}
 		        }
 		        else if (keyCode == KeyEvent.VK_LEFT) {
-		        	LEFT(f, matrix);
-		    		deleteOldText(f);
-		    		fromMatrixtoText(f, matrix);
-		    		genera(f, matrix);
+		        	if(LEFT(f, matrix)) {
+		        		Sum_LEFT(f, matrix);
+		    			deleteOldText(f);
+			    		fromMatrixtoText(f, matrix);
+			    		genera(f, matrix);
+		    		}
+		        	else if(Sum_LEFT(f, matrix)) {
+		        		deleteOldText(f);
+			    		fromMatrixtoText(f, matrix);
+			    		genera(f, matrix);
+		        	}
 		        }
 		        else if (keyCode == KeyEvent.VK_RIGHT) {
 		        	RIGHT(f, matrix);
@@ -51,14 +70,6 @@ public class Main {
 		        }
 			}
 		});
-		/*
-		for(int y=0; y<f.n; y++) {
-			for(int x=0; x<f.n; x++) {
-				System.out.print(matrix[x][y] + " ");
-			}
-			System.out.println("");
-		}
-		*/
 	}
 	
 	public static void fromTextToMatrix(Frame f, int[][] matrix) {
@@ -70,25 +81,6 @@ public class Main {
 				c++;
 			}
 		}
-	}
-	
-	public static boolean UP(Frame f, int[][] matrix) {
-		int c=0;
-		for(int times=0; times<3; times++) {//eseguo per 3 volte per assicurare che anche se un numero sia tutto in basso, dopo 3 spostamenti possa essere su
-			for(int y=0; y<(f.n)-1; y++) {
-				for(int x=0; x<f.n; x++) {
-					if(matrix[x][y] == 0 && matrix[x][y+1] != 0) {
-						matrix[x][y] = matrix[x][y+1];
-						matrix[x][y+1] = 0;
-						c++;
-					}
-				}
-			}
-		}
-		if(c<1)
-			return false;
-		else
-			return true;
 	}
 	
 	public static void fromMatrixtoText(Frame f, int[][] matrix) {
@@ -111,6 +103,43 @@ public class Main {
 		}
 	}
 	
+	public static boolean UP(Frame f, int[][] matrix) {
+		int c=0;
+		for(int times=0; times<3; times++) {//eseguo per 3 volte per assicurare che anche se un numero sia tutto in basso, dopo 3 spostamenti possa essere su
+			for(int y=0; y<(f.n)-1; y++) {
+				for(int x=0; x<f.n; x++) {
+					if(matrix[x][y] == 0 && matrix[x][y+1] != 0) {
+						matrix[x][y] = matrix[x][y+1];
+						matrix[x][y+1] = 0;
+						c++;
+					}
+				}
+			}
+		}
+		if(c<1)
+			return false;
+		else
+			return true;
+	}
+	
+	public static boolean Sum_UP(Frame f, int[][] matrix) {
+		int c=0;
+			for(int y=0; y<(f.n)-1; y++) {
+				for(int x=0; x<f.n; x++) {
+					if(matrix[x][y] == matrix[x][y+1] && matrix[x][y] != 0) {
+						matrix[x][y] += matrix[x][y+1];
+						matrix[x][y+1] = 0;
+						UP(f, matrix);
+						c++;
+					}
+				}
+			}
+			if(c<1)
+				return false;
+			else
+				return true;
+	}
+	
 	public static boolean DOWN(Frame f, int[][] matrix) {
 		int c=0;
 		for(int times=0; times<3; times++) {//eseguo per 3 volte per assicurare che anche se un numero sia tutto in basso, dopo 3 spostamenti possa essere su
@@ -127,6 +156,24 @@ public class Main {
 		if(c<1)
 			return false;
 		else
+			return true;
+	}
+	
+	public static boolean Sum_DOWN(Frame f, int[][] matrix) {
+		int c=0;
+		for(int y=(f.n)-1; y>0; y--) {
+			for(int x=0; x<f.n; x++) {
+				if(matrix[x][y] == matrix[x][y-1] && matrix[x][y] != 0) {
+					matrix[x][y] += matrix[x][y-1];
+					matrix[x][y-1] = 0;
+					DOWN(f, matrix);
+					c++;
+				}
+			}
+		}
+		if(c<1)
+			return false;
+		else 
 			return true;
 	}
 	
@@ -149,6 +196,24 @@ public class Main {
 			return true;
 	}
 	
+	public static boolean Sum_LEFT(Frame f, int[][] matrix) {
+		int c=0;
+		for(int y=0; y<f.n; y++) {
+			for(int x=0; x<(f.n)-1; x++) {
+				if(matrix[x][y] == matrix[x+1][y] && matrix[x][y] != 0) {
+					matrix[x][y] += matrix[x+1][y];
+					matrix[x+1][y] = 0;
+					LEFT(f, matrix);
+					c++;
+				}
+			}
+		}
+		if(c<1)
+			return false;
+		else 
+			return true;
+	}
+	
 	public static boolean RIGHT(Frame f, int[][] matrix) {
 		int c=0;
 		for(int times=0; times<3; times++) {//eseguo per 3 volte per assicurare che anche se un numero sia tutto in basso, dopo 3 spostamenti possa essere su
@@ -165,6 +230,24 @@ public class Main {
 		if(c<1)
 			return false;
 		else
+			return true;
+	}
+	
+	public static boolean Sum_RIGHT(Frame f, int[][] matrix) {
+		int c=0;
+		for(int y=0; y<f.n; y++) {
+			for(int x=(f.n)-1; x>0; x--) {
+				if(matrix[x][y] == matrix[x-1][y] && matrix[x][y] != 0) {
+					matrix[x][y] += matrix[x-1][y];
+					matrix[x-1][y] = 0;
+					RIGHT(f, matrix);
+					c++;
+				}
+			}
+		}
+		if(c<1)
+			return false;
+		else 
 			return true;
 	}
 	
