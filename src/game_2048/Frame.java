@@ -16,7 +16,7 @@ public class Frame extends JFrame
 	public JLabel[] text;
 
 	public Frame() {
-		super("convertitore monete");
+		super("J2048");
 		Container c = this.getContentPane();
 		c.setLayout(new GridLayout(n,n));
 		c.setBackground(Color.gray);
