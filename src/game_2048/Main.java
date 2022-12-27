@@ -63,10 +63,17 @@ public class Main {
 		        	}
 		        }
 		        else if (keyCode == KeyEvent.VK_RIGHT) {
-		        	RIGHT(f, matrix);
-		    		deleteOldText(f);
-		    		fromMatrixtoText(f, matrix);
-		    		genera(f, matrix);
+		        	if(RIGHT(f, matrix)) {
+		        		Sum_RIGHT(f, matrix);
+		    			deleteOldText(f);
+			    		fromMatrixtoText(f, matrix);
+			    		genera(f, matrix);
+		    		}
+		        	else if(Sum_RIGHT(f, matrix)) {
+		        		deleteOldText(f);
+			    		fromMatrixtoText(f, matrix);
+			    		genera(f, matrix);
+		        	}
 		        }
 			}
 		});
