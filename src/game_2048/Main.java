@@ -9,6 +9,8 @@ import java.util.Random;
 
 public class Main {
 	
+	
+	
 	public static void main(String[] args) {
 		Frame f = new Frame();
 		f.pack();
@@ -91,12 +93,51 @@ public class Main {
 	}
 	
 	public static void fromMatrixtoText(Frame f, int[][] matrix) {
+		
+		Color c2 	= new Color(238,228,218);
+		Color c4 	= new Color(238,225,201);
+		Color c8 	= new Color(243,178,122);
+		Color c16 	= new Color(246,150,100);
+		Color c32 	= new Color(247,124,95);
+		Color c64 	= new Color(247,95,59);
+		Color c128 	= new Color(237,208,115);
+		Color c256 	= new Color(255,255,255);
+		Color c512 	= new Color(255,255,255);
+		Color c1024 = new Color(255,255,255);
+		Color c2048 = new Color(255,255,255);
+		Color cDefault = new Color(58,58,48);
+		
 		int c=0;
 		for(int y=0; y<f.n; y++) {
 			for(int x=0; x<f.n; x++) {
 				if(matrix[x][y] != 0) {
 					f.text[c].setText(String.valueOf(matrix[x][y]));
-					f.grid[c].setBackground(Color.white);// da cambiare colore in base al numero
+					int number = Integer.parseInt(f.text[c].getText());
+					switch(number) {
+					case 2: f.grid[c].setBackground(c2);
+						break;
+					case 4: f.grid[c].setBackground(c4);
+						break;
+					case 8: f.grid[c].setBackground(c8);
+						break;
+					case 16: f.grid[c].setBackground(c16);
+						break;
+					case 32: f.grid[c].setBackground(c32);
+						break;
+					case 64: f.grid[c].setBackground(c64);
+						break;
+					case 128: f.grid[c].setBackground(c128);
+						break;
+					case 256: f.grid[c].setBackground(c256);
+						break;
+					case 512: f.grid[c].setBackground(c512);
+						break;
+					case 1024: f.grid[c].setBackground(c1024);
+						break;
+					case 2048: f.grid[c].setBackground(c2048);
+						break;
+					default: f.grid[c].setBackground(cDefault);
+					}
 				}
 				c++;
 			}
@@ -104,9 +145,10 @@ public class Main {
 	}
 	
 	public static void deleteOldText(Frame f) {
+		Color panel = new Color(205,193,180);
 		for(int k=0; k<f.n*f.n; k++) {
 			f.text[k].setText(null);
-			f.grid[k].setBackground(Color.LIGHT_GRAY);
+			f.grid[k].setBackground(panel);
 		}
 	}
 	
@@ -259,6 +301,9 @@ public class Main {
 	}
 	
 	public static void genera(Frame f, int[][] matrix) {
+		
+		Color c2 	= new Color(238,228,218);
+		
 		int[] poss = new int[f.n*f.n];
 		int c=0;
 		for(int k=0; k<f.n*f.n; k++) {
@@ -271,7 +316,7 @@ public class Main {
 			Random random = new Random();
 			int rand = random.nextInt(c);
 			f.text[poss[rand]].setText("2");
-			f.grid[poss[rand]].setBackground(Color.white);
+			f.grid[poss[rand]].setBackground(c2);
 			matrix[poss[rand] - (4*(poss[rand]/4))][poss[rand]/4] = 2;
 			/*for(int k=0; k<c; k++) {
 				System.out.print(matrix[k] + " ");
