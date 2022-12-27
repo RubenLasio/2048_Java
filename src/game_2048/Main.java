@@ -101,10 +101,10 @@ public class Main {
 		Color c32 	= new Color(247,124,95);
 		Color c64 	= new Color(247,95,59);
 		Color c128 	= new Color(237,208,115);
-		Color c256 	= new Color(255,255,255);
-		Color c512 	= new Color(255,255,255);
-		Color c1024 = new Color(255,255,255);
-		Color c2048 = new Color(255,255,255);
+		Color c256 	= new Color(237,208,115);
+		Color c512 	= new Color(237,208,115);
+		Color c1024 = new Color(237,208,115);
+		Color c2048 = new Color(237,208,115);
 		Color cDefault = new Color(58,58,48);
 		
 		int c=0;
@@ -158,6 +158,7 @@ public class Main {
 		for(int k=0; k<f.n*f.n; k++) {
 			f.text[k].setText(null);
 			f.grid[k].setBackground(panel);
+			f.text[k].setForeground(Color.black);
 		}
 	}
 	
