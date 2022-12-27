@@ -27,10 +27,13 @@ public class Frame extends JFrame
 		Color panel = new Color(205,193,180);
 		Color border = new Color(187,173,160);
 		
+		Font f1 = new Font("Arial",Font.BOLD,30);
+		
 		for(int k=0; k<n*n; k++) {
 			grid[k] = new JPanel();
 			grid[k].setLayout(new BorderLayout());
 			text[k] = new JLabel("",SwingConstants.CENTER);
+			text[k].setFont(f1);
 			grid[k].setBackground(panel);
 			grid[k].add(text[k],BorderLayout.CENTER);
 			grid[k].setBorder(BorderFactory.createLineBorder(border, 3));
@@ -44,6 +47,7 @@ public class Frame extends JFrame
 	}
 	
 	public void genera() {
+		Color c2 	= new Color(238,228,218);
 		int[] poss = new int[n*n];
 		int c=0;
 		for(int k=0; k<n*n; k++) {
@@ -56,7 +60,7 @@ public class Frame extends JFrame
 			Random random = new Random();
 			int rand = random.nextInt(c);
 			text[poss[rand]].setText("2");
-			grid[poss[rand]].setBackground(Color.white);
+			grid[poss[rand]].setBackground(c2);
 			/*for(int k=0; k<c; k++) {
 				System.out.print(poss[k] + " ");
 			}

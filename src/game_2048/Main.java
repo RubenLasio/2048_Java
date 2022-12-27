@@ -121,22 +121,31 @@ public class Main {
 					case 8: f.grid[c].setBackground(c8);
 						break;
 					case 16: f.grid[c].setBackground(c16);
+							 f.text[c].setForeground(Color.white);
 						break;
 					case 32: f.grid[c].setBackground(c32);
+							 f.text[c].setForeground(Color.white);
 						break;
 					case 64: f.grid[c].setBackground(c64);
+							 f.text[c].setForeground(Color.white);
 						break;
 					case 128: f.grid[c].setBackground(c128);
+							  f.text[c].setForeground(Color.white);
 						break;
 					case 256: f.grid[c].setBackground(c256);
+							  f.text[c].setForeground(Color.white);
 						break;
 					case 512: f.grid[c].setBackground(c512);
+							  f.text[c].setForeground(Color.white);
 						break;
 					case 1024: f.grid[c].setBackground(c1024);
+							   f.text[c].setForeground(Color.white);
 						break;
 					case 2048: f.grid[c].setBackground(c2048);
+							   f.text[c].setForeground(Color.white);
 						break;
 					default: f.grid[c].setBackground(cDefault);
+							 f.text[c].setForeground(Color.white);
 					}
 				}
 				c++;
